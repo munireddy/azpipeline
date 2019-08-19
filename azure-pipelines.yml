@@ -20,7 +20,7 @@ steps:
             --location eastus \
             --image win2016datacenter \
             --admin-username azureuser \
-            --admin-password MlkAtl197900
+            --admin-password MlkAtl197900  -vv
 
       #  az vm open-port --port 3389 --resource-group muni1 --name myWinVM1
       #  echo After Login
