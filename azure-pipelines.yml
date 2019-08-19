@@ -22,7 +22,6 @@ steps:
             --admin-username azureuser \
             --admin-password MKLATL1979
 
-# Open port 3389 to allow RDP traffic to host.
         az vm open-port --port 3389 --resource-group muni1 --name myWinVM1
         echo After Login
         az resource list --out table > data2.txt 2>&1
