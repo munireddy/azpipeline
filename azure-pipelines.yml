@@ -2,32 +2,41 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 steps:
   # Sample command to test echo
   - script: echo This is a build pipeline using Azure-pipelines
   # This is a sample command to test mkdir
-  - script: md sampledir
-  # This is a sample command to create a file
-  - script: echo "abcedef" >> c:\cred.txt
+  - script: mkdir sampledir
+
   # Actual script needed for you.
   - script: |
-        dir 
+        ls -ltr 
         az login --service-principal --username "3d587273-dcac-47f1-b714-72f244c67c52"  --password "8ec3a20c-e55e-4341-abec-28d57eab3be1" --tenant "59b2865a-7fb8-4ccb-ab68-72cbca88fc48"
-        az vm create \
-            --resource-group Muni1 \
-            --name myWinVM1 \
-            --location eastus \
-            --image win2016datacenter \
-            --admin-username azureuser \
-            --admin-password Mlk$Atl197900  -vv
+        # Update for your admin password
+        AdminPassword=MLK123ATL!!ffD$
+        az group create --name myResourceGroup --location westeurope
+        az network vnet create --resource-group myResourceGroup --name myVnet --subnet-name mySubnet
+        az network public-ip create --resource-group myResourceGroup --name myPublicIP
 
-      #  az vm open-port --port 3389 --resource-group muni1 --name myWinVM1
-      #  echo After Login
-      #  az resource list --out table > data2.txt 2>&1
-      #  echo After Resource List
-  - script: |      
-        dir /od
-        echo  After resource List
-        type data2.txt
-        dir
+        az network nsg create --resource-group myResourceGroup --name myNetworkSecurityGroup
+
+        az network nic create \
+           --resource-group myResourceGroup \
+           --name myNic \
+           --vnet-name myVnet \
+           --subnet mySubnet \
+           --network-security-group myNetworkSecurityGroup \
+           --public-ip-address myPublicIP
+
+
+        az vm create \
+           --resource-group myResourceGroup \
+           --name myVM \
+           --location westeurope \
+           --nics myNic \
+           --image win2016datacenter \
+           --admin-username azureuser \
+           --admin-password $AdminPassword
+
+        az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
