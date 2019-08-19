@@ -14,6 +14,16 @@ steps:
   - script: |
         dir 
         az login --service-principal --username "3d587273-dcac-47f1-b714-72f244c67c52"  --password "8ec3a20c-e55e-4341-abec-28d57eab3be1" --tenant "59b2865a-7fb8-4ccb-ab68-72cbca88fc48"
+        az vm create \
+            --resource-group muni1 \
+            --name myWinVM1 \
+            --location eastus \
+            --image win2016datacenter \
+            --admin-username azureuser \
+            --admin-password MKLATL1979
+
+# Open port 3389 to allow RDP traffic to host.
+az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
         echo After Login
         az resource list --out table > data2.txt 2>&1
         echo After Resource List
