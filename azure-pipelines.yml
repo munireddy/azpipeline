@@ -45,8 +45,7 @@ steps:
            --image OpenLogic:CentOS-CI:7-CI:latest \
            --admin-username azureuser \
            --admin-password $AdminPassword \
-           --custom-data  cloud-init.txt \
            --generate-ssh-keys
            
-        #az vm run-command invoke -g myResourceGroup6 -n myVm6 --command-id RunShellScript --scripts "sudo yum update && sudo touch /tmp/file1.txt && sudo yum install -y docker"
+        az vm run-command invoke -g myResourceGroup6 -n myVm6 --command-id RunShellScript --scripts "sudo yum update && sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
         # az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
