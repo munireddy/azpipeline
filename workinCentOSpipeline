@@ -1,0 +1,47 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
+  # Sample command to test echo
+  - script: echo This is a build pipeline using Azure-pipelines
+  # This is a sample command to test mkdir
+  - script: mkdir sampledir
+
+  # Actual script needed for you.
+  - script: |
+        ls -ltr 
+        az login --service-principal --username "3d587273-dcac-47f1-b714-72f244c67c52"  --password "8ec3a20c-e55e-4341-abec-28d57eab3be1" --tenant "59b2865a-7fb8-4ccb-ab68-72cbca88fc48"
+        # Update for your admin password
+        AdminPassword=MLK123ATL!!ffD$
+        az group create --name myResourceGroup6 --location westeurope
+        az network vnet create --resource-group myResourceGroup6 --name myVnet6 --subnet-name mySubnet6
+        az network public-ip create --resource-group myResourceGroup6--name myPublicIP6
+        az network nsg create --resource-group myResourceGroup6 --name myNetworkSecurityGroup6
+        az network nic create \
+           --resource-group myResourceGroup6 \
+           --name myNic6 \
+           --vnet-name myVnet6 \
+           --subnet mySubnet6 \
+           --network-security-group myNetworkSecurityGroup6 \
+           --public-ip-address myPublicIP6
+        #  az vm create \
+        #   --resource-group myResourceGroup \
+        #   --name myVM \
+        #   --location westeurope \
+        #   --nics myNic \
+        #   --image win2016datacenter \
+        #   --admin-username azureuser \
+        #   --admin-password $AdminPassword
+        az vm create \
+           --resource-group myResourceGroup6 \
+           --name myVM6 \
+           --location westeurope \
+           --image OpenLogic:CentOS-CI:7-CI:latest \
+           --admin-username azureuser \
+           --admin-password $AdminPassword \
+           --generate-ssh-keys
+           
+        az vm run-command invoke -g myResourceGroup6 -n myVm6 --command-id RunShellScript --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
+        # az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
