@@ -42,10 +42,10 @@ steps:
            --resource-group myResourceGroup5 \
            --name myVM5 \
            --location westeurope \
-           --image CentOS \
+           --image UbuntuLTS \
            --admin-username azureuser \
            --admin-password $AdminPassword \
            --generate-ssh-keys
            
-        az vm run-command invoke -g myResourceGroup5 -n myVm5 --command-id RunShellScript --scripts "sudo yum update && sudo touch /tmp/file1.txt && curl -fsSL https://get.docker.com/ | sh"
+        az vm run-command invoke -g myResourceGroup5 -n myVm5 --command-id RunShellScript --scripts "sudo apt-get update && sudo touch /tmp/file1.txt && sudo apt-get install docker"
         # az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
