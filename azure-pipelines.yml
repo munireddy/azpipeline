@@ -23,7 +23,7 @@ steps:
         nsgName=myNetworkSecurityGroup7
         nicName=myNic7
         vmName=myVM7
-        userName=cloudUser
+        userName=clouduser
 
         az group create --name $rgName --location $locName
         az network vnet create --resource-group $rgName --name $vnetName --subnet-name $subnetName
