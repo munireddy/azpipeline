@@ -47,5 +47,5 @@ steps:
            --admin-password $AdminPassword \
            --generate-ssh-keys
            
-        az vm run-command invoke -g myResourceGroup6 -n myVm6 --command-id RunShellScript --scripts "sudo yum update && sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
+        az vm run-command invoke -g myResourceGroup6 -n myVm6 --command-id RunShellScript --scripts "sudo touch /tmp/file1.txt && sudo curl -fsSL https://get.docker.com/ | sh"
         # az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
