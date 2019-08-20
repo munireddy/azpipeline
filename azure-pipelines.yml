@@ -15,7 +15,7 @@ steps:
         az login --service-principal --username "3d587273-dcac-47f1-b714-72f244c67c52"  --password "8ec3a20c-e55e-4341-abec-28d57eab3be1" --tenant "59b2865a-7fb8-4ccb-ab68-72cbca88fc48"
         # Update for your admin password
         AdminPassword=MLK123ATL!!ffD$
-        az group create --name myResourceGroup1 --location eastus
+        az group create --name myResourceGroup1 --location westeurope
         az network vnet create --resource-group myResourceGroup1 --name myVnet1 --subnet-name mySubnet1
         az network public-ip create --resource-group myResourceGroup1 --name myPublicIP1
 
@@ -41,7 +41,7 @@ steps:
         az vm create \
            --resource-group myResourceGroup1 \
            --name myVM1 \
-           --location eastus \
+           --location westeurope \
            --image CentOS \
            --admin-username azureuser \
            --admin-password $AdminPassword \
