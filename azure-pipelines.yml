@@ -46,4 +46,4 @@ steps:
            --admin-password $AdminPassword \
            --generate-ssh-keys    
 
-        az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
+        # az vm open-port --port 3389 --resource-group myResourceGroup --name myVM
