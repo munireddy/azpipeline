@@ -15,14 +15,14 @@ steps:
         az login --service-principal --username "3d587273-dcac-47f1-b714-72f244c67c52"  --password "8ec3a20c-e55e-4341-abec-28d57eab3be1" --tenant "59b2865a-7fb8-4ccb-ab68-72cbca88fc48"
         # Update for your admin password
         AdminPassword=MLK123ATL!!ffD$
-        rgName=myResourceGroup7
+        rgName=myResourceGroup5
         locName=westeurope
-        vnetName=myVnet7
-        subnetName=mySubnet7
-        publicIP=myPublicIP7
-        nsgName=myNetworkSecurityGroup7
-        nicName=myNic7
-        vmName=myVM7
+        vnetName=myVnet5
+        subnetName=mySubnet5
+        publicIP=myPublicIP5
+        nsgName=myNetworkSecurityGroup5
+        nicName=myNic5
+        vmName=myVM5
         userName=clouduser
 
         az group create --name $rgName --location $locName
