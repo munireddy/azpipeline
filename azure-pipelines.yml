@@ -30,7 +30,7 @@ steps:
            --public-ip-address myPublicIP2
 
 
-        # az vm create \
+        #  az vm create \
         #   --resource-group myResourceGroup \
         #   --name myVM \
         #   --location westeurope \
