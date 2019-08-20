@@ -1,0 +1,5 @@
+echo "Start of custom Data"
+touch /tmp/naresh1.txt
+sudo yum update
+curl -fsSL https://get.docker.com/ | sh
+echo "end of custom Data"
